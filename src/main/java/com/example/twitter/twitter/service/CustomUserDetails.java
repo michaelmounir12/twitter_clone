@@ -2,24 +2,24 @@ package com.example.twitter.twitter.service;
 
 import com.example.twitter.twitter.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
-
-public class CustomUserDetails implements UserDetails{
+public class CustomUserDetails implements UserDetails {
 
     private User user;
 
-    public CustomUserDetails(User user)
-    {
+    public CustomUserDetails(User user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Future feature
-        return null;
+        // Return a default authority or empty list, depending on your future features
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -34,26 +34,25 @@ public class CustomUserDetails implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Future feature
+        // Implement your logic for account expiration
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Future feature
+        // Implement your logic for account locking
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // TODO Future feature
+        // Implement your logic for credential expiration
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // TODO Future feature
+        // Implement your logic for account enabling
         return true;
     }
-
 }

@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.twitter.twitter.model.User;
 import com.example.twitter.twitter.dao.UserRepository;
-
 @Service
-public class CustomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository R_user;
@@ -21,13 +20,13 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = R_user.findByUsername(username);
-
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
         return new CustomUserDetails(user);
     }
 
-    public User getUserByUsername(String username)
-    {
+    public User getUserByUsername(String username) {
         return R_user.findByUsername(username);
     }
-
 }

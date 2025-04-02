@@ -1,17 +1,35 @@
 package com.example.twitter.twitter.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue()
    private long userid;
+    @Column(nullable = false,unique = true)
    private String email;
    private String password;
-   private String username;
+    @Column(nullable = false,unique = true)
+
+    private String username;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
 
     public long getUserid() {
         return userid;
