@@ -22,6 +22,9 @@ public class User {
     private String username;
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "follower")
+    private List<Follower> follows;
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

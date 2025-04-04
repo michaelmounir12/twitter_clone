@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Tweet {
@@ -20,6 +21,10 @@ public class Tweet {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "comment_tweet_id_tweetid")
+    List<Comment> comments;
 
     public Long getId() {
         return id;
