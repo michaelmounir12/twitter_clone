@@ -1,5 +1,6 @@
 package com.example.twitter.twitter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,8 +20,7 @@ public class User {
     @Column(nullable = false,unique = true)
 
     private String username;
-    @CreatedDate
-    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -46,7 +46,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
